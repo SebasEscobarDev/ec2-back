@@ -78,7 +78,7 @@ export const updateFormItem = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
-  const fileUrl = `http://localhost:${env.APP_PORT}/uploads/${req.file.filename}`;
+  const fileUrl = `http://localhost/uploads/${req.file.filename}`;
   // res.json({ url: fileUrl });
   req.body.foto = fileUrl;
   try {
