@@ -48,7 +48,7 @@ export const createFormItem = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
-  const fileUrl = `http://localhost/uploads/${req.file.filename}`;
+  const fileUrl = `uploads/${req.file.filename}`;
   req.body.foto = fileUrl;
   try {
     const item = await Couple.createItem(req.body)
