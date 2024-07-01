@@ -1,29 +1,29 @@
 import IrisModel from '../operations/Iris.js'
-const iris = new IrisModel()
+const operations = new IrisModel()
 
 class Iris {
   static async getAll(options) {
-    return await iris.getAll(options)
+    return await operations.getAll(options)
   }
 
   static async getItem(id) {
-    return await iris.getItem(id)
+    return await operations.getItem(id)
   }
 
   static async createItem(body) {
-    return await iris.createItem(body)
+    return await operations.createItem(body)
   }
 
   static async updateItem(body) {
-    return await iris.updateItem(body)
+    return await operations.updateItem(body)
   }
 
   static async deleteItem(id) {
-    return await iris.deleteItem(id)
+    return await operations.deleteItem(id)
   }
 
   static async deleteAll() {
-    return await iris.deleteAll()
+    return await operations.deleteAll()
   }
 }
 

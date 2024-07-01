@@ -25,7 +25,6 @@ import cl from 'picocolors'
 
 const app = express()
 const server = http.createServer(app)
-console.log(env.CORS_ORIGIN)
 const io = new SocketIOServer(server, {
   transports: ['websocket', 'polling'],
   cors: {
@@ -53,15 +52,15 @@ app.set('__dirname', __dirname);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // usar rutas
-app.use('/api/users', usersRoutes)
-app.use('/api/purchases', purchasesRoutes)
-app.use('/api/messages', messagesRoutes)
-app.use('/api/matches', matchesRoutes)
-app.use('/api/irises', irisesRoutes)
-app.use('/api/detailsmatches', detailsmatchesRoutes)
-app.use('/api/websockets', websocketsRoutes)
-app.use('/api/couples', couplesRoutes)
-app.use('/api/notifies', notifiesRoutes)
+app.use('/users', usersRoutes)
+app.use('/purchases', purchasesRoutes)
+app.use('/messages', messagesRoutes)
+app.use('/matches', matchesRoutes)
+app.use('/irises', irisesRoutes)
+app.use('/detailsmatches', detailsmatchesRoutes)
+app.use('/websockets', websocketsRoutes)
+app.use('/couples', couplesRoutes)
+app.use('/notifies', notifiesRoutes)
 
 
 app.get('/', (req, res) => {

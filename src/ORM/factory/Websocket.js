@@ -1,29 +1,29 @@
 import WebsocketModel from '../operations/Websocket.js'
-const websocket = new WebsocketModel()
+const operations = new WebsocketModel()
 
 class Websocket {
   static async getAll(options) {
-    return await websocket.getAll(options)
+    return await operations.getAll(options)
   }
 
   static async getItem(id) {
-    return await websocket.getItem(id)
+    return await operations.getItem(id)
   }
 
   static async createItem(body) {
-    return await websocket.createItem(body)
+    return await operations.createItem(body)
   }
 
   static async updateItem(body) {
-    return await websocket.updateItem(body)
+    return await operations.updateItem(body)
   }
 
   static async deleteItem(id) {
-    return await websocket.deleteItem(id)
+    return await operations.deleteItem(id)
   }
 
   static async deleteAll() {
-    return await websocket.deleteAll()
+    return await operations.deleteAll()
   }
 }
 

@@ -1,4 +1,5 @@
 import User from '../ORM/factory/User.js'
+import Compatibility from '../ORM/factory/Compatibility.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { handleSequelizeError } from './handleErrors/sequalizeErrors.js'
@@ -75,6 +76,7 @@ export const createItem = async (req, res, next) => {
 }
 
 export const updateFormItem = async (req, res, next) => {
+  const registro = req.body.registro ? true : false;
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
@@ -83,6 +85,8 @@ export const updateFormItem = async (req, res, next) => {
   req.body.foto = fileUrl;
   try {
     const item = await User.updateItem(req.body)
+    //ejecutar resultado compatibilidad
+    Compatibility.getAll({ results: 10, page: 1 })
     return res.status(200).json(item)
   } catch (e) {
     const errors = e.errors ? handleSequelizeError(e) : { message: 'Error en la base de datos' }

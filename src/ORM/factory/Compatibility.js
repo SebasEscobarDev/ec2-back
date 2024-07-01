@@ -1,7 +1,7 @@
-import MatchModel from '../operations/Match.js'
-const operations = new MatchModel()
+import CompatibilityModel from '../operations/Compatibility.js'
+const operations = new CompatibilityModel()
 
-class Match {
+class Compatibility {
   static async getAll(options) {
     return await operations.getAll(options)
   }
@@ -27,4 +27,4 @@ class Match {
   }
 }
 
-export default Match
+export default Compatibility

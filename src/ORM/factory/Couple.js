@@ -1,29 +1,29 @@
 import CoupleModel from '../operations/Couple.js'
-const couple = new CoupleModel()
+const operations = new CoupleModel()
 
 class Couple {
-
   static async getAll(options) {
-    return await couple.getAll(options)
+    return await operations.getAll(options)
   }
 
   static async getItem(id) {
-    return await couple.getItem(id)
+    return await operations.getItem(id)
   }
 
   static async createItem(body) {
-    return await couple.createItem(body)
+    return await operations.createItem(body)
   }
 
   static async updateItem(body) {
-    return await couple.updateItem(body)
+    return await operations.updateItem(body)
   }
 
   static async deleteItem(id) {
-    return await couple.deleteItem(id)
+    return await operations.deleteItem(id)
   }
+
   static async deleteAll() {
-    return await couple.deleteAll()
+    return await operations.deleteAll()
   }
 }
 

@@ -1,29 +1,29 @@
 import NotifyModel from '../operations/Notify.js'
-const notify = new NotifyModel()
+const operations = new NotifyModel()
 
 class Notify {
   static async getAll(options) {
-    return await notify.getAll(options)
+    return await operations.getAll(options)
   }
 
   static async getItem(id) {
-    return await notify.getItem(id)
+    return await operations.getItem(id)
   }
 
   static async createItem(body) {
-    return await notify.createItem(body)
+    return await operations.createItem(body)
   }
 
   static async updateItem(body) {
-    return await notify.updateItem(body)
+    return await operations.updateItem(body)
   }
 
   static async deleteItem(id) {
-    return await notify.deleteItem(id)
+    return await operations.deleteItem(id)
   }
 
   static async deleteAll() {
-    return await notify.deleteAll()
+    return await operations.deleteAll()
   }
 }
 
