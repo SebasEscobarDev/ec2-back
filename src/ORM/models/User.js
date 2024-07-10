@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../../database/connection.js'
 import Match from './Match.js'
+import Compatibility from './Compatibility.js'
 
 // import Mensaje from './Mensaje.js'
 
@@ -99,7 +100,11 @@ User.init({
   timestamps: false
 })
 
-User.hasMany(Match, { as: 'matches', foreignKey: 'user_id', otherKey: 'match_user_id' })
+User.hasMany(Match, { as: 'matches', foreignKey: 'match_user_id' })
 Match.belongsTo(User, { as: 'user', foreignKey: 'user_id' })
+
+User.hasMany(Compatibility, { as: 'compatibilities', foreignKey: 'perfil_user_id' })
+Compatibility.belongsTo(User, { as: 'user', foreignKey: 'user_id' })
+
 
 export default User

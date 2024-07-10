@@ -9,9 +9,7 @@ Compatibility.init({
     },
     perfil_user_id: DataTypes.UUID,
     user_id: DataTypes.UUID,
-    score: DataTypes.INTEGER,
-    creado_el: DataTypes.STRING,
-    actualizado_el: DataTypes.STRING
+    score: DataTypes.INTEGER
 }, {
     sequelize,
     modelName: 'Compatibility',

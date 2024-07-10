@@ -38,9 +38,7 @@ class Compatibility {
     return await CompatibilityModel.create({
       id: uuid4(),
       perfil_user_id: body.perfil_user_id,
-      user_id: body.user_id,
-      creado_el: moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss'),
-      actualizado_el: moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
+      user_id: body.user_id
     })
   }
 
@@ -50,12 +48,10 @@ class Compatibility {
       perfil_user_id,
       user_id,
     } = body
-    const actualizado_el = moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
 
     const updateInfo = {
       ...(perfil_user_id && { perfil_user_id }),
       ...(user_id && { user_id }),
-      ...(actualizado_el && { actualizado_el }),
     }
     const up = await CompatibilityModel.update(updateInfo, {
       where: { id }
@@ -65,6 +61,20 @@ class Compatibility {
     } else {
       return null
     }
+  }
+
+  async createOrUpdate(body) {
+    const actualizado_el = moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
+
+
+
+    return await CompatibilityModel.findOrCreate({
+      where: { perfil_user_id: body.perfil_user_id, user_id: body.user_id },
+      defaults: {
+        id: uuid4(),
+        score: body.score,
+      },
+    });
   }
 }
 

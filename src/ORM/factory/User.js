@@ -10,6 +10,10 @@ class User {
     return await operations.getAll(options)
   }
 
+  static async getAllFilters(options) {
+    return await operations.getAllFilters(options)
+  }
+
   static async getGenderedUsers(options) {
     return await operations.getGenderedUsers(options)
   }

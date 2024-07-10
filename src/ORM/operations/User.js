@@ -3,6 +3,7 @@ import UserModel from '../models/User.js'
 import moment from 'moment'
 import bcrypt from 'bcryptjs'
 import uuid4 from 'uuid4'
+import { Op } from 'sequelize'
 
 const ARRAY_ATTRIBUTES = [
   'id',
@@ -46,6 +47,29 @@ class User {
       ],
       attributes: ARRAY_ATTRIBUTES,
       include: 'matches'
+    })
+  }
+
+  async getAllFilters({ results, page, user }) {
+    return await UserModel.findAndCountAll({
+      where: {
+        id: {
+          [Op.ne]: user.id
+        },
+        app: 'Citas',
+        genero_identifica: {
+          [Op.in]: user.genero_interes.split(',')
+        },
+        genero_interes: {
+          [Op.like]: `%${user.genero_identifica}%`
+        },
+      },
+      offset: (page - 1) * results,
+      limit: results,
+      order: [
+        ['creado_el', 'ASC']
+      ],
+      attributes: ARRAY_ATTRIBUTES
     })
   }
 

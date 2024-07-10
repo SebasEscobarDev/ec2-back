@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { body } from 'express-validator'
 import {
+  getPrueba,
   getAll,
   getGenderedUsers,
   createItem,
@@ -19,6 +20,8 @@ import path from 'path';
 const router = Router()
 
 router.get('/', getAll)
+
+router.get('/prueba', getPrueba)
 
 router.get('/gendered-users/:genero', getGenderedUsers)
 

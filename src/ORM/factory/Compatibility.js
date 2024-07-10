@@ -25,6 +25,10 @@ class Compatibility {
   static async deleteAll() {
     return await operations.deleteAll()
   }
+
+  static async createOrUpdate(body) {
+    return await operations.createOrUpdate(body)
+  }
 }
 
 export default Compatibility
