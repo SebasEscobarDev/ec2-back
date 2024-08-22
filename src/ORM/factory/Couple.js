@@ -10,6 +10,10 @@ class Couple {
     return await operations.getItem(id)
   }
 
+  static async getCoupleUser(id) {
+    return await operations.getCoupleUser(id)
+  }
+
   static async createItem(body) {
     return await operations.createItem(body)
   }

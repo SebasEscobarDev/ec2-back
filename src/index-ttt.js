@@ -24,17 +24,30 @@ import { configureSocketIO } from './routes/sockets.js'
 import cl from 'picocolors'
 
 const app = express()
-app.use(cors())
 
+const allowedOrigins = [
+  'http://localhost:8000',
+  'http://54.197.33.96'
+];
 
-const server = http.createServer(app)
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"]
+};
+
+app.use(cors(corsOptions));
+
+const server = http.createServer(app);
 const io = new SocketIOServer(server, {
   transports: ['websocket', 'polling'],
-  cors: {
-    origin: '*',
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  }
-})
+  cors: corsOptions
+});
 
 app.set('port', env.APP_PORT)
 app.use(morgan('dev'))

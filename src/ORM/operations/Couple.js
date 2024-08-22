@@ -20,6 +20,12 @@ class Couple {
     return await CoupleModel.findByPk(id)
   }
 
+  async getCoupleUser(id) {
+    return await CoupleModel.findAll({
+      where: { user_id: id }
+    })
+  }
+
   async deleteItem(id) {
     return await CoupleModel.destroy({
       where: { id }

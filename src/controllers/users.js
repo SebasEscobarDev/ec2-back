@@ -118,8 +118,6 @@ export const getPrueba = async (req, res, next) => {
           score: score.data.puntuacion ?? 0
         })
 
-
-
       } catch (e) {
         console.log('error en la peticion')
       }
@@ -250,26 +248,44 @@ export const updateFormItem = async (req, res, next) => {
 
     const ids = usersFilters.map(user => user.id)
 
-
-    const response = {
-      count: usersFilters.length,
-      page: options.page,
-      perPage: options.results,
-      lastPage,
-      rows: ids
-    }
-
     //ya tengo usuarios filtrados por filtros seleccionados del usuario
 
     //hay que comparar la compatibilidad de los usuarios filtrados para actualizar el perfil de compatibilidad de ellos
     //y hay que comprar la compatibilidad del usuario que ejecuta la peticion con los usuarios filtrados
 
     //actualizar compatibilidad de los usuarios filtrados con el usuario que ejecuta la peticion, si no se ha ejecutado antes este perfil. ( perfil_user_id = bucle.perfil )
+    const myUser = await User.getItem(user.id)
+
+    if (true) {
+      // Creación de un objeto FormData para manejar los datos y archivos a enviar
+      let data = new FormData();
+
+      // Agregando datos de la primera persona al objeto FormData
+      // Estos datos serán utilizados para calcular la compatibilidad
+      data.append('persona1[nombre]', myUser.nombre);
+      data.append('persona1[año]', myUser.nacimiento_ano);
+      data.append('persona1[mes]', myUser.nacimiento_mes);
+      data.append('persona1[dia]', myUser.nacimiento_dia);
+      data.append('persona1[hora]', '2');
+      data.append('persona1[minuto]', '0');
+      data.append('persona1[ciudad]', myUser.nacimiento_ciudad ?? 'Manizales');
+      data.append('persona1[pais]', 'CO');
+
+      try {
+        const score = await axios.post('http://localhost:5000/relationship_score', data, {
+          headers: data.getHeaders() // Estableciendo los encabezados adecuados para el tipo de datos
+        })
+        console.log(score.data)
+      } catch (e) {
+        console.log('error en la peticion')
+      }
+    }
+
+
 
     ids.forEach(async (id) => {
       if (id == undefined || id == null) return
       const otherUser = await User.getItem(id)
-      const myUser = await User.getItem(user.id)
       //hacer consulta de compatibilidad entre usuarios
       // Creación de un objeto FormData para manejar los datos y archivos a enviar
       let data = new FormData();
@@ -315,13 +331,12 @@ export const updateFormItem = async (req, res, next) => {
           score: score.data.puntuacion ?? 0
         })
 
-
-
       } catch (e) {
         console.log('error en la peticion')
       }
 
     })
+
 
 
     return res.status(200).json(user)

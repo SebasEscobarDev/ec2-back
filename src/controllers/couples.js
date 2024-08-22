@@ -34,6 +34,18 @@ export const getItem = async (req, res, next) => {
   }
 }
 
+export const getCoupleUser = async (req, res, next) => {
+  try {
+    console.log('req.params.id')
+    console.log(req.params.id)
+    const couple = await Couple.getCoupleUser(req.params.id)
+    return res.status(200).json(couple)
+  } catch (e) {
+    const errors = e.errors ? handleSequelizeError(e) : { message: 'Error en la base de datos' }
+    return res.status(409).json(errors)
+  }
+}
+
 export const createItem = async (req, res, next) => {
   try {
     const item = await Couple.createItem(req.body)

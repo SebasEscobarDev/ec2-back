@@ -5,6 +5,7 @@ import {
   createItem,
   createFormItem,
   getItem,
+  getCoupleUser,
   updateItem,
   deleteItem,
   deleteAll
@@ -19,6 +20,8 @@ const router = Router()
 router.get('/', getAll)
 
 router.get('/:id', getItem)
+
+router.get('/user/:id', getCoupleUser)
 
 router.post('/', [
   body([
