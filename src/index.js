@@ -7,6 +7,7 @@ import { env } from './environment.js'
 // conectar db
 import { sequelize } from './database/connection.js'
 // rutas
+import genresRoutes from './routes/genres.js'
 import usersRoutes from './routes/users.js'
 import purchasesRoutes from './routes/purchases.js'
 import messagesRoutes from './routes/messages.js'
@@ -17,7 +18,6 @@ import websocketsRoutes from './routes/websockets.js'
 import couplesRoutes from './routes/couples.js'
 import notifiesRoutes from './routes/notifies.js'
 import compatibilitiesRoutes from './routes/compatibilities.js'
-import genresRoutes from './routes/genres.js'
 
 // socket server
 import http from 'http'
