@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../../database/connection.js'
 import Match from './Match.js'
 import Compatibility from './Compatibility.js'
+import Genre from './Genre.js'
 
 // import Mensaje from './Mensaje.js'
 
@@ -105,6 +106,5 @@ Match.belongsTo(User, { as: 'user', foreignKey: 'user_id' })
 
 User.hasMany(Compatibility, { as: 'compatibilities', foreignKey: 'perfil_user_id' })
 Compatibility.belongsTo(User, { as: 'user', foreignKey: 'user_id' })
-
 
 export default User

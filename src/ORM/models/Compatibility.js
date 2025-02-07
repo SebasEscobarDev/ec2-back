@@ -13,7 +13,7 @@ Compatibility.init({
 }, {
     sequelize,
     modelName: 'Compatibility',
-    tableName: 'Compatibilities',
+    tableName: 'Compatibilidades',
     underscored: true,
     timestamps: false
 })

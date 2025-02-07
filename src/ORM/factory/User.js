@@ -14,10 +14,6 @@ class User {
     return await operations.getAllFilters(options)
   }
 
-  static async getGenderedUsers(options) {
-    return await operations.getGenderedUsers(options)
-  }
-
   static async getItem(id) {
     return await operations.getItem(id)
   }

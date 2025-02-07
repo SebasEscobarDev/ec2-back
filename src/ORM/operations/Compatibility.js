@@ -14,9 +14,6 @@ class Compatibility {
       where: options,
       offset: (page - 1) * results,
       limit: results,
-      order: [
-        ['creado_el', 'ASC']
-      ],
     })
   }
 

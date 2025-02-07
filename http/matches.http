@@ -1,0 +1,35 @@
+@api = http://192.168.20.15:8000/api/matches
+
+### GET ALL
+GET {{api}}/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYzYxM2IxLWEzZjgtNDJiNy05YjJmLWFjNDMzNWQ3YzUwZSIsImlhdCI6MTcwODAyNjQzOSwiZXhwIjoxNzA4MTEyODM5fQ.-jVgvTLXtbunliu9jdoE4RfZy0Ug0kEYYBc9rSS8TfA
+
+### CREATE
+POST {{api}}/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYzYxM2IxLWEzZjgtNDJiNy05YjJmLWFjNDMzNWQ3YzUwZSIsImlhdCI6MTcwODAyNjQzOSwiZXhwIjoxNzA4MTEyODM5fQ.-jVgvTLXtbunliu9jdoE4RfZy0Ug0kEYYBc9rSS8TfA
+
+{
+    "user_id": "58ebda99-1678-4b3f-a099-50bd9e64b338",
+    "match_user_id": "33df1a5e-0e0e-44bb-a232-34f6b83f22ee"
+}
+
+### CREATE
+POST {{api}}/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYzYxM2IxLWEzZjgtNDJiNy05YjJmLWFjNDMzNWQ3YzUwZSIsImlhdCI6MTcwODAyNjQzOSwiZXhwIjoxNzA4MTEyODM5fQ.-jVgvTLXtbunliu9jdoE4RfZy0Ug0kEYYBc9rSS8TfA
+
+{
+    "user_id": "58ebda99-1678-4b3f-a099-50bd9e64b338",
+    "match_user_id": "36235c4b-b80f-4061-8a33-1074b0e7009c"
+}
+
+### CREATE
+POST {{api}}/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYzYxM2IxLWEzZjgtNDJiNy05YjJmLWFjNDMzNWQ3YzUwZSIsImlhdCI6MTcwODAyNjQzOSwiZXhwIjoxNzA4MTEyODM5fQ.-jVgvTLXtbunliu9jdoE4RfZy0Ug0kEYYBc9rSS8TfA
+
+{
+    "user_id": "58ebda99-1678-4b3f-a099-50bd9e64b338",
+    "match_user_id": "38cfac5c-540b-4313-98b1-f95d3ac60482"
+}

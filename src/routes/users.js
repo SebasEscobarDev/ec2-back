@@ -1,16 +1,15 @@
 import { Router } from 'express'
 import { body } from 'express-validator'
 import {
-  getPrueba,
   getAll,
-  getGenderedUsers,
   createItem,
   updateFormItem,
   getItem,
   updateItem,
   deleteItem,
   deleteAll,
-  login
+  login,
+  getAllFilters
 } from '../controllers/users.js'
 import { validateToken } from '../middlewares/validateToken.js'
 import { validateFields } from '../middlewares/validateFields.js'
@@ -21,11 +20,9 @@ const router = Router()
 
 router.get('/', getAll)
 
-router.get('/prueba', getPrueba)
-
-router.get('/gendered-users/:genero', getGenderedUsers)
-
 router.get('/:id', getItem)
+
+router.get('/allfilters/:user_id', getAllFilters)
 
 router.post('/', [
   body([

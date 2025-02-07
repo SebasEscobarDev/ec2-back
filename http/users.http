@@ -1,0 +1,72 @@
+# @api = http://54.197.33.96:8000/api/users
+@api = http://localhost:8000/users
+@imgSebas = 'https://scontent.feoh4-4.fna.fbcdn.net/v/t39.30808-6/315400786_10219301163914751_6058043911540279279_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeFBMT-X1o4VstyeMLcear1BBREoOwBQ0ekFESg7AFDR6WdUaSeBFk6P3KZKk59nhJI&_nc_ohc=wLEHM6aKdqUAX8VFYfx&_nc_ht=scontent.feoh4-4.fna&oh=00_AfAxajppqLPtT60m35yrcQPdFV81RgNZcoYE0dsR507nGw&oe=65D47961'
+@imgCata = 'https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/385903140_7470624982952631_6231000995368018449_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeG8UrAw3228kPoKQUzJoCqoFQHfvKmIARQVAd-8qYgBFI24JH9yIqGC_f3wSoF8DoM&_nc_ohc=repufcjh-uwAX85nlQP&_nc_oc=AQls_3Ag6pC-yDKfftOdoh1qzTsnLA5Z2VlnltLeIx6VxWBCh-ARv7SS1370moqBcOXJDwWHyOy64MHTZT1f1T2p&_nc_ht=scontent.feoh4-3.fna&oh=00_AfDk7eX4PbWH2m29oVtDwHAVOVuVE3A3cB51Gk4HvEJ7PQ&oe=65D4CFBD'
+
+@imgNata = 'https://scontent.feoh4-4.fna.fbcdn.net/v/t39.30808-6/215975545_114100127604178_3917558581052677396_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeHXof8fjtkbRuSsvICeNPJmvt0OO7liv8K-3Q47uWK_wr3s3gGAJ-OOB7DR78dy2mM&_nc_ohc=SXqMpLykwjsAX811EWq&_nc_ht=scontent.feoh4-4.fna&oh=00_AfCtLvXkY4tJywW7qb8KR2qFJ9r44WLo1TJIM4m_W9zQLw&oe=65D4B326'
+
+### GET ALL
+GET {{api}}/prueba
+
+### GET ALL
+GET {{api}}/
+
+### CREATE
+POST {{api}}/
+Content-Type: application/json
+
+{
+    "email": "nata@gmail.com",
+    "password": "Qaws12pj-22"
+}
+
+### ACTUALIZAR
+PUT {{api}}/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZmYWZmMTEzLWYwYWEtNDkzYy1iZjJhLWM4MGI3MjBiMDJjOSIsImlhdCI6MTcwODA1MDgzNSwiZXhwIjoxNzA4MTM3MjM1fQ.HPbK3gYzPXoLZJlCCYbV_5AQPo3SM55aWJ1y0eu8-i4
+
+{
+    "id": "e8a751e6-b081-465f-918b-85cf4a16e438",
+    "nombre": "Natalia Gonzalez Escobar",
+    "nacimiento_dia": "04",
+    "nacimiento_mes": "02",
+    "nacimiento_ano": "2010",
+    "nacimiento_ciudad": "Manizales",
+    "genero_mostrar": true,
+    "genero_identifica": "mujer",
+    "genero_interes": "hombre",
+    "foto": "https://scontent.feoh4-4.fna.fbcdn.net/v/t39.30808-6/215975545_114100127604178_3917558581052677396_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeHXof8fjtkbRuSsvICeNPJmvt0OO7liv8K-3Q47uWK_wr3s3gGAJ-OOB7DR78dy2mM&_nc_ohc=SXqMpLykwjsAX811EWq&_nc_ht=scontent.feoh4-4.fna&oh=00_AfCtLvXkY4tJywW7qb8KR2qFJ9r44WLo1TJIM4m_W9zQLw&oe=65D4B326",
+    "acerca": "",
+    "enfermedad_ojos": "",
+    "tipo_luz": "",
+    "lugar_toma_foto": "",
+    "ubicacion": "",
+    "rango_edad": ""
+}
+
+### LOGIN
+POST {{api}}/login
+Content-Type: application/json
+
+{
+    "email":"sebas22185@gmail.com",
+    "password": "Qaws12pj-22"
+}
+
+### GET BY ID
+GET {{api}}/71d773fe-ebbb-4493-95ce-f86a468e371c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA3NTE1MDg4LCJleHAiOjE3MDc2MDE0ODh9.0CqXu7LhI3D-f0njgt9W8UfM6yGDDNtY8jJbSY47tWo
+
+### DELETE
+DELETE {{api}}/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjg4NDQxNjYwLCJleHAiOjE2ODg0NDUyNjB9.HUl2M79rLB03J8lFJUUQuVggmPydnuHAc3g3ey10Ztk
+
+### GET ALL
+GET {{api}}/gendered-users
+Content-Type: application/json
+
+{
+    "genero_interes":"hombre"
+}

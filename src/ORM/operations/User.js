@@ -4,6 +4,7 @@ import moment from 'moment'
 import bcrypt from 'bcryptjs'
 import uuid4 from 'uuid4'
 import { Op } from 'sequelize'
+import Genre from '../models/Genre.js'
 
 const ARRAY_ATTRIBUTES = [
   'id',
@@ -29,6 +30,8 @@ const ARRAY_ATTRIBUTES = [
   'actualizado_el',
 ]
 
+const formatDate = () => moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss');
+
 class User {
   async login(email) {
     return await UserModel.findOne({
@@ -53,16 +56,10 @@ class User {
   async getAllFilters({ results, page, user }) {
     return await UserModel.findAndCountAll({
       where: {
-        id: {
-          [Op.ne]: user.id
-        },
-        app: 'Citas',
-        genero_identifica: {
-          [Op.in]: user.genero_interes.split(',')
-        },
-        genero_interes: {
-          [Op.like]: `%${user.genero_identifica}%`
-        },
+        id: { [Op.ne]: user.id },
+        app: { [Op.or]: ['Citas', 'Dates', 'Encontros'] },
+        genero_identifica: { [Op.in]: user.genero_interes.split(',') },
+        genero_interes: { [Op.like]: `%${user.genero_identifica}%` },
       },
       offset: (page - 1) * results,
       limit: results,
@@ -73,20 +70,10 @@ class User {
     })
   }
 
-  async getGenderedUsers({ results, page, genero_identifica }) {
-    return await UserModel.findAndCountAll({
-      where: { genero_identifica },
-      offset: (page - 1) * results,
-      limit: results,
-      order: [
-        ['creado_el', 'ASC']
-      ],
-      attributes: ARRAY_ATTRIBUTES,
-    })
-  }
-
   async getItem(id) {
-    return await UserModel.findByPk(id, { include: 'matches', attributes: ARRAY_ATTRIBUTES, raw: true })
+    return await UserModel.findByPk(id, {
+      include: 'matches', attributes: ARRAY_ATTRIBUTES, raw: true
+    })
   }
 
   async getItemEmail(email) {
@@ -115,8 +102,8 @@ class User {
       id: uuid4(),
       email: body.email,
       password: hashPass,
-      creado_el: moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss'),
-      actualizado_el: moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
+      creado_el: formatDate(),
+      actualizado_el: formatDate(),
     },
       {
         attributes: ARRAY_ATTRIBUTES,
@@ -126,66 +113,19 @@ class User {
   }
 
   async updateItem(body) {
-    let {
-      id,
-      email,
-      password,
-      nombre,
-      nacimiento_hora,
-      nacimiento_dia,
-      nacimiento_mes,
-      nacimiento_ano,
-      nacimiento_ciudad,
-      genero_mostrar,
-      genero_identifica,
-      genero_interes,
-      foto,
-      acerca,
-      enfermedad_ojos,
-      tipo_luz,
-      lugar_toma_foto,
-      rango_edad,
-      app
-    } = body
-    const actualizado_el = moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
-
-    if (password) password = await bcrypt.hash(password, 12)
-
-    // if (fecha_nacimiento) fecha_nacimiento = moment(fecha_nacimiento, 'DD-MM-YYYY').utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
+    const actualizado_el = formatDate();
+    if (body.password) body.password = await bcrypt.hash(body.password, 12);
 
     const updateInfo = {
-      ...(email && { email }),
-      ...(password && { password }),
-      ...(email && { email }),
-      ...(password && { password }),
-      ...(nombre && { nombre }),
-      ...(nacimiento_hora && { nacimiento_hora }),
-      ...(nacimiento_dia && { nacimiento_dia }),
-      ...(nacimiento_mes && { nacimiento_mes }),
-      ...(nacimiento_ano && { nacimiento_ano }),
-      ...(nacimiento_ciudad && { nacimiento_ciudad }),
-      ...(genero_mostrar && { genero_mostrar }),
-      ...(genero_identifica && { genero_identifica }),
-      ...(genero_interes && { genero_interes }),
-      ...(foto && { foto }),
-      ...(acerca && { acerca }),
-      ...(enfermedad_ojos && { enfermedad_ojos }),
-      ...(tipo_luz && { tipo_luz }),
-      ...(lugar_toma_foto && { lugar_toma_foto }),
-      ...(rango_edad && { rango_edad }),
-      ...(app && { app }),
-      ...(actualizado_el && { actualizado_el }),
-    }
-    const up = await UserModel.update(updateInfo, {
-      where: { id },
-      attributes: ARRAY_ATTRIBUTES,
-      raw: true
-    })
-    if (up.length) {
-      return await UserModel.findByPk(id, { attributes: ARRAY_ATTRIBUTES, raw: true })
-    } else {
-      return null
-    }
+      ...body,
+      actualizado_el,
+    };
+
+    const [rowsUpdated] = await UserModel.update(updateInfo, {
+      where: { id: body.id },
+    });
+
+    return rowsUpdated ? this.getItem(body.id) : null;
   }
 }
 

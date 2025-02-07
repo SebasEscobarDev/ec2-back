@@ -2,6 +2,17 @@
 import IrisModel from '../models/Iris.js'
 import moment from 'moment'
 
+const ARRAY_ATTRIBUTES = [
+  'racional',
+  'emocional',
+  'mental',
+  'amar',
+  'autoconocimiento',
+  'espiritual',
+  'responsabilidad',
+  'autonomia'
+]
+
 class Iris {
 
   async getAll({ results, page }) {
@@ -11,12 +22,13 @@ class Iris {
       order: [
         ['creado_el', 'ASC']
       ],
+      attributes: ARRAY_ATTRIBUTES,
       raw: true
     })
   }
 
   async getItem(id) {
-    return await IrisModel.findByPk(id, { raw: true })
+    return await IrisModel.findByPk(id, { attributes: ARRAY_ATTRIBUTES, raw: true })
   }
 
   async deleteItem(id) {
@@ -42,11 +54,7 @@ class Iris {
       autonomia: body.autonomia,
       creado_el: moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss'),
       actualizado_el: moment(new Date()).utcOffset('-0500').format('YYYY-MM-DD HH:mm:ss')
-    },
-      {
-        raw: true
-      }
-    )
+    })
   }
 
   async updateItem(body) {
