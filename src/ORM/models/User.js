@@ -96,7 +96,7 @@ User.init({
 }, {
   sequelize,
   modelName: 'User',
-  tableName: 'Usuarios',
+  tableName: 'usuarios',
   underscored: true,
   timestamps: false
 })

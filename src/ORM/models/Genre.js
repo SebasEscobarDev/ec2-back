@@ -23,7 +23,7 @@ Genre.init({
 }, {
   sequelize,
   modelName: 'Genre',
-  tableName: 'Generos',
+  tableName: 'generos',
   underscored: true,
   timestamps: false
 })

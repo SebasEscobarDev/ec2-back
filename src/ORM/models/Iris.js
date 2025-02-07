@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../../database/connection.js'
 
-class Iris extends Model {}
+class Iris extends Model { }
 Iris.init({
   user_id: {
     type: DataTypes.UUID,
@@ -20,7 +20,7 @@ Iris.init({
 }, {
   sequelize,
   modelName: 'Iris',
-  tableName: 'Irises',
+  tableName: 'irises',
   underscored: true,
   timestamps: false
 })

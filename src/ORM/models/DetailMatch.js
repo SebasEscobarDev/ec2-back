@@ -3,7 +3,7 @@ import { sequelize } from '../../database/connection.js'
 
 // import Match from './Matches.js'
 
-class DetailMatch extends Model {}
+class DetailMatch extends Model { }
 DetailMatch.init({
   id: {
     type: DataTypes.UUID,
@@ -15,7 +15,7 @@ DetailMatch.init({
 }, {
   sequelize,
   modelName: 'DetailMatch',
-  tableName: 'DetalleMatches',
+  tableName: 'detallematches',
   underscored: true,
   timestamps: false
 })

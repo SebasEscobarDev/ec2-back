@@ -18,7 +18,7 @@ Websocket.init({
 }, {
   sequelize,
   modelName: 'Websocket',
-  tableName: 'Websockets',
+  tableName: 'websockets',
   underscored: true,
   timestamps: false
 })

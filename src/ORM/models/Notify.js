@@ -39,7 +39,7 @@ Notify.init({
 }, {
   sequelize,
   modelName: 'Notify',
-  tableName: 'Notificaciones',
+  tableName: 'notificaciones',
   underscored: true,
   timestamps: false
 })

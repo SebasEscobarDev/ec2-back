@@ -50,7 +50,7 @@ Couple.init({
 }, {
   sequelize,
   modelName: 'Couple',
-  tableName: 'Parejas',
+  tableName: 'parejas',
   underscored: true,
   timestamps: false
 })

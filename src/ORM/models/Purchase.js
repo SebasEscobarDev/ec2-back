@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../../database/connection.js'
 
-class Purchase extends Model {}
+class Purchase extends Model { }
 Purchase.init({
   id: {
     type: DataTypes.UUID,
@@ -16,7 +16,7 @@ Purchase.init({
 }, {
   sequelize,
   modelName: 'Purchase',
-  tableName: 'Compras',
+  tableName: 'compras',
   underscored: true,
   timestamps: false
 })
